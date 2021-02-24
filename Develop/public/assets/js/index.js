@@ -40,21 +40,21 @@ const getNotes = () =>
 
       const noteList = document.getElementById('note-list');
 
-      let noteItem = document.createElement('li');
+      let noteList = document.createElement('li');
       listItem.classList.add('list-group-item', 'mt-4');
 
-      const noteEl = document.createElement('h2');
-            noteEl.textContent = `Note #${i + 1}`;
+      const note = document.createElement('h2');
+            note.textContent = `Note #${i + 1}`;
 
-      const titleEl = document.createElement('h2');
-            titleEl.textContent = `: ${noteData[i].title}`;
+      const title = document.createElement('h2');
+            title.textContent = `: ${noteData[i].title}`;
 
-      const textEl = document.createElement('h2');
-            textEl.textContent = `: ${noteData[i].text}`;
+      const text = document.createElement('h2');
+            text.textContent = `: ${noteData[i].text}`;
 
-      noteItem.appendChild(noteEl);
-      noteItem.appendChild(titleEl);
-      noteItem.appendChild(textEl);
+      noteList.appendChild(note);
+      noteList.appendChild(title);
+      noteList.appendChild(text);
 
       noteList.appendChild(noteItem);
     }
