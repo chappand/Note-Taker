@@ -31,7 +31,37 @@ const getNotes = () =>
     headers: {
       'Content-Type': 'application/json',
     },
+  }).then((response) => response.json())
+  .then((noteData) => {
+    console.log('noteData', noteData);
+    console.log('------------------------------------');
+ 
+    for (let i = 0; i < noteData.length; i++) {
+
+      const noteList = document.getElementById('note-list');
+
+      let noteItem = document.createElement('li');
+      listItem.classList.add('list-group-item', 'mt-4');
+
+      const noteEl = document.createElement('h2');
+            noteEl.textContent = `Note #${i + 1}`;
+
+      const titleEl = document.createElement('h2');
+            titleEl.textContent = `: ${noteData[i].title}`;
+
+      const textEl = document.createElement('h2');
+            textEl.textContent = `: ${noteData[i].text}`;
+
+      noteItem.appendChild(noteEl);
+      noteItem.appendChild(titleEl);
+      noteItem.appendChild(textEl);
+
+      noteList.appendChild(noteItem);
+    }
+  }).catch((error) => {
+    console.error('Error', error);
   });
+
 
 const saveNote = (note) =>
   fetch('/api/notes', {
@@ -59,6 +89,8 @@ const renderActiveNote = () => {
     noteTitle.value = activeNote.title;
     noteText.value = activeNote.text;
   } else {
+    noteTitle.removeAttribute('readonly');
+    noteText.removeAttribute('readonly');
     noteTitle.value = '';
     noteText.value = '';
   }

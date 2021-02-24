@@ -11,6 +11,6 @@ module.exports = (app) => {
 
 
     app.post('/api/tables', (req, res) => {});
-// fs.appendfile note?
+// fs.appendfile note? fs.writefile note?
 };
 
