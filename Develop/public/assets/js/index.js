@@ -1,3 +1,5 @@
+const e = require("express");
+
 let noteTitle;
 let noteText;
 let saveNoteBtn;
@@ -70,7 +72,20 @@ const saveNote = (note) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
-  });
+  }).then((response) => response.json())
+  .then((data) => {
+        if (data) {
+          alert('Note Saved!')
+          document.getElementById('title').value = '';
+          document.getElementById('text').value = '';
+        } else {
+          alert('Unable to save note')
+          document.getElementById('title').value = '';
+          document.getElementById('text').value = '';
+        }
+    }).catch((error) => {
+      console.error('Error:', error);
+    });
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
